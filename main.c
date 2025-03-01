@@ -62,6 +62,7 @@ int main(int argc, char** argv){
         fclose(file);
         return 0;
     }
+    fclose(file);
     Passenger passenger;
     time_t stamp1, stamp2;
     stamp1 = clock();
@@ -75,6 +76,7 @@ int main(int argc, char** argv){
                     printf("| %-15s | %-8s | %-16d | %-16d | %-15s | %-17s | %-9d | %-8d |\n", passengers[j].surname, passengers[j].initials, passengers[j].numberOfThings, passengers[j].weightOfThings, passengers[j].destination, passengers[j].departureTime, passengers[j].transfers, passengers[j].children);
                     printf("| %-15s | %-8s | %-16d | %-16d | %-15s | %-17s | %-9d | %-8d |\n", passenger.surname, passenger.initials, passenger.numberOfThings, passenger.weightOfThings, passenger.destination, passenger.departureTime, passenger.transfers, passenger.children);
                     printf("time: %.3lfms\n", ((double)(stamp2 - stamp1))*1000/((double) CLOCKS_PER_SEC));
+                    free(passengers);
                     return 0;
                 }
             }
@@ -83,5 +85,6 @@ int main(int argc, char** argv){
     stamp2 = clock();
     printf("Подходящих элементов не найдено\n");
     printf("time: %.3lfms\n", ((double)(stamp2 - stamp1))*1000/((double) CLOCKS_PER_SEC));
+    free(passengers);
     return 0;
 }

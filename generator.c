@@ -69,6 +69,7 @@ int main(int argc, char** argv){
         return 0;
     }
     Passenger passenger;
+    memset(&passenger, '\0', sizeof(Passenger));
     fwrite(&count, sizeof(int), 1, file);
     for (int i = 0; i < count; i++){
         getCharField(passenger.surname, SURNAMELENGTH, 4);
@@ -79,7 +80,7 @@ int main(int argc, char** argv){
         getDateTimeField(passenger.departureTime);
         passenger.transfers = rand()%10;
         passenger.children = rand()%5;
-        fwrite(&passenger, sizeof(passenger), 1, file);
+        fwrite(&passenger, sizeof(Passenger), 1, file);
     }
     fclose(file);
     return 0;

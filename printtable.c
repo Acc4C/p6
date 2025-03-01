@@ -39,5 +39,6 @@ int main(int argc, char** argv){
         }
         printf("| %-15s | %-8s | %-16d | %-16d | %-15s | %-17s | %-9d | %-8d |\n", passenger.surname, passenger.initials, passenger.numberOfThings, passenger.weightOfThings, passenger.destination, passenger.departureTime, passenger.transfers, passenger.children);
     }
+    fclose(file);
     return 0;
 }
