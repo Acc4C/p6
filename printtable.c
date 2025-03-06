@@ -9,7 +9,7 @@ int main(int argc, char** argv){
     int count;
     Passenger passenger;
     if ((choice = getopt(argc, argv, "f:")) != -1){
-        filename = (char*)malloc(sizeof(char)*(sizeof(optarg) + 1));
+        filename = (char*)malloc(sizeof(char)*(strlen(optarg) + 1));
         if (filename == NULL){
             printf("memory error");
             return 0;

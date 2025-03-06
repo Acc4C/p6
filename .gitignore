@@ -1,5 +1,6 @@
 main
 printtable
-generator
+createtable
 *.bin
 *.swp
+*.txt

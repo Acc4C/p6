@@ -55,28 +55,31 @@ int main(int argc, char** argv){
         fclose(file);
         return 0;
     }
-    Passenger* passengers = (Passenger*)malloc(sizeof(Passenger)*count);
-    if (fread(passengers, sizeof(Passenger), count, file) != count){
-        printf("Некорректное содержание файла\n");
-        free(passengers);
-        fclose(file);
-        return 0;
-    }
-    fclose(file);
-    Passenger passenger;
+    Passenger passenger, passengerBefore;
     time_t stamp1, stamp2;
     stamp1 = clock();
     for (int i = 1; i < count; i++){
-        passenger = passengers[i];
+        fseek(file, sizeof(int) + sizeof(Passenger)*i, SEEK_SET);
+        if (fread(&passenger, sizeof(Passenger), 1, file) != 1){
+            printf("Некорректное содержание файла\n");
+            fclose(file);
+            return 0;
+        }
         for (int j = 0; j < i; j++){
-            if (passengers[j].numberOfThings == passenger.numberOfThings){
-                if ((passengers[j].weightOfThings - passenger.weightOfThings) <= weight && (passengers[j].weightOfThings - passenger.weightOfThings) >= -weight){
+            fseek(file, sizeof(int) + sizeof(Passenger)*j, SEEK_SET);
+            if (fread(&passengerBefore, sizeof(Passenger), 1, file) != 1){
+                printf("Некорректное содержание файла\n");
+                fclose(file);
+                return 0;
+            }
+            if (passengerBefore.numberOfThings == passenger.numberOfThings){
+                if ((passengerBefore.weightOfThings - passenger.weightOfThings) <= weight && (passengerBefore.weightOfThings - passenger.weightOfThings) >= -weight){
                     stamp2 = clock();
                     printf("|     SURNAME     | INITIALS | NUMBER OF THINGS | WEIGHT OF THINGS |   DESTINATION   |   DEPARTURE TIME  | TRANSFERS | CHILDREN |\n");
-                    printf("| %-15s | %-8s | %-16d | %-16d | %-15s | %-17s | %-9d | %-8d |\n", passengers[j].surname, passengers[j].initials, passengers[j].numberOfThings, passengers[j].weightOfThings, passengers[j].destination, passengers[j].departureTime, passengers[j].transfers, passengers[j].children);
+                    printf("| %-15s | %-8s | %-16d | %-16d | %-15s | %-17s | %-9d | %-8d |\n", passengerBefore.surname, passengerBefore.initials, passengerBefore.numberOfThings, passengerBefore.weightOfThings, passengerBefore.destination, passengerBefore.departureTime, passengerBefore.transfers, passengerBefore.children);
                     printf("| %-15s | %-8s | %-16d | %-16d | %-15s | %-17s | %-9d | %-8d |\n", passenger.surname, passenger.initials, passenger.numberOfThings, passenger.weightOfThings, passenger.destination, passenger.departureTime, passenger.transfers, passenger.children);
                     printf("time: %.3lfms\n", ((double)(stamp2 - stamp1))*1000/((double) CLOCKS_PER_SEC));
-                    free(passengers);
+                    fclose(file);
                     return 0;
                 }
             }
@@ -85,6 +88,6 @@ int main(int argc, char** argv){
     stamp2 = clock();
     printf("Подходящих элементов не найдено\n");
     printf("time: %.3lfms\n", ((double)(stamp2 - stamp1))*1000/((double) CLOCKS_PER_SEC));
-    free(passengers);
+    fclose(file);
     return 0;
 }
