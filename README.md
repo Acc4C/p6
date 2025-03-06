@@ -4,15 +4,15 @@
 make build
 ```
 
-## Генерация данных
-Программа **generator** генерирует **-c** пассажиров и охраняет разультат в бинарном файле **-f**:
+## Создание таблицы с пассажирами
+Программа **createtable** позволяет преобразовать текстовый файл **-i** в бинарный файл **-o**:
 ```command
-./generator -c <count> -f <filename> 
+./createtable -i <input> -o <output> 
 ```
-Значение **count** должно быть не менее 20. 
+ 
 Пример:
 ```command
-./generator -c 20 -f out.bin
+./createtable -i ./inp.txt -o ./out.bin
 
 ```
 
@@ -27,12 +27,12 @@ make build
 ```
 ```command
 |     SURNAME     | INITIALS | NUMBER OF THINGS | WEIGHT OF THINGS |   DESTINATION   |   DEPARTURE TIME  | TRANSFERS | CHILDREN |
-| Wlrbbmqbhcd     | R. A.    | 264              | 927              | Kkyh            | 01.04.2029 14:50  | 2         | 3        |
-| Rjmowfrxsjy     | L. B.    | 422              | 920              | Fsarcbynecdy    | 19.05.2026 09:45  | 4         | 2        |
-| Rellnmpapqfw    | H. K.    | 251              | 88               | Mcoq            | 08.12.2029 07:12  | 0         | 1        |
-| Hsqm            | B. G.    | 296              | 571              | Cljjiv          | 01.05.2026 13:20  | 6         | 1        |
-| Xixmvtrrbljpt   | S. N.    | 498              | 354              | Zqfjmafadr      | 12.07.2028 04:35  | 0         | 4        |
-| Nuvq            | F. H.    | 56               | 380              | Aqxwpqca        | 05.11.2027 08:03  | 1         | 2        |
+| Passenger1      | R. A.    | 264              | 927              | London          | 01.04.2029 14:50  | 2         | 3        |
+| Passenger2      | L. B.    | 422              | 920              | Hollywood       | 19.05.2026 09:45  | 4         | 2        |
+| Passenger3      | H. K.    | 251              | 88               | Moscow          | 08.12.2029 07:12  | 0         | 1        |
+| Passenger4      | B. G.    | 296              | 571              | Singapore       | 01.05.2026 13:20  | 6         | 1        |
+| Passenger5      | S. N.    | 498              | 354              | Washington      | 12.07.2028 04:35  | 0         | 4        |
+| Passenger6      | F. H.    | 56               | 380              | Bangladesh      | 05.11.2027 08:03  | 1         | 2        |
 . . .
 ```
 
@@ -47,7 +47,7 @@ make build
 ```
 ```command
 |     SURNAME     | INITIALS | NUMBER OF THINGS | WEIGHT OF THINGS |   DESTINATION   |   DEPARTURE TIME  | TRANSFERS | CHILDREN |
-| Kskfojne        | X. W.    | 1                | 326              | Nofwltwjw       | 26.12.2025 21:14  | 1         | 2        |
-| Pxchvczysvdgcx  | B. B.    | 1                | 321              | Meaylzifktmo    | 03.05.2026 06:13  | 7         | 0        |
+| Passenger15     | X. W.    | 1                | 326              | Tokyo           | 26.12.2025 21:14  | 1         | 2        |
+| Passenger38     | B. B.    | 1                | 321              | Florida         | 03.05.2026 06:13  | 7         | 0        |
 time: 0.014ms
 ```
